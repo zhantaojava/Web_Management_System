@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	if(u.equals("zhantao")&&p.equals("123")){
     		
     		//valid ,then forward to wel.jsp
-    		response.sendRedirect("wel.jsp");
+    		response.sendRedirect("wel.jsp?username="+u);
     	
     	}
     	else{
