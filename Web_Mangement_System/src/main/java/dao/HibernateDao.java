@@ -17,9 +17,11 @@ public class HibernateDao {
 
 	/**
 	 * 
+	 * @param username
+	 * @param password
 	 * @return
 	 */
-	public List searchUser() {
+	public List searchUser(String username) {
 		Configuration configuration = new Configuration();
 		configuration.configure();
 		serviceRegistry = new ServiceRegistryBuilder().applySettings(
@@ -32,9 +34,18 @@ public class HibernateDao {
 
 		session.beginTransaction();
 
-		List<User> list = session.createQuery("from User").list();
+		
+		String hql = " from User where name like :name";
+        Query query = session.createQuery(hql);
+        query.setString("name", username);
+        List<User> list = query.list();
+		
+		
+		//List<User> list = session.createQuery("from User").list();
 
 		session.getTransaction().commit();
+
+		
 
 		return list;
 

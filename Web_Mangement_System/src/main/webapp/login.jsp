@@ -31,6 +31,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <input type="submit" value="login">
     <input type="reset" value="reset">
     </form>
+    
+    
+    
+    <font color=red>
+    <%
+    	String erro=request.getParameter("erro");
+
+    	if(erro!=null){
+    	
+    	out.println(erro);
+    	}
+    %></font>
     </center> 
   </body>
 </html>

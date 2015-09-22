@@ -24,11 +24,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   <center>
-    	Login Success <br>
+    	<font color=red >Login Success </font><br>
     	<br>
-    	UserName:<%=request.getParameter("username")
+    	UserName:<font color=red><%=request.getParameter("username")
     	
-    	 %>
+    	 %></font>
     	 <br>
     	 <br>
     	<a href="login.jsp">return back login again</a>

@@ -33,7 +33,7 @@
 		String u = request.getParameter("username");
 		String p = request.getParameter("pw");
 
-		//valida from DB
+		/* //valida from DB
 
 		//1.loading drvier
 		Class.forName("com.mysql.jdbc.Driver");
@@ -65,9 +65,9 @@
 			//username invalid    
 			String unameerro = "password invalid";
 			response.sendRedirect("login.jsp?erro=" + unameerro);
-		}
+		} */
 
-		/*//Validation (not hit DB) 
+		//Validation (not hit DB) 
 		
 		if(u.equals("zhantao")&&p.equals("123")){
 			
@@ -77,8 +77,9 @@
 		}
 		else{
 			//invalid
-			response.sendRedirect("login.jsp");
-		} */
+			String erro="invalid user";
+			response.sendRedirect("login.jsp?erro="+erro);
+		} 
 	%>
 </body>
 </html>
