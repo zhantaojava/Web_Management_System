@@ -23,13 +23,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body >
-    This is Login page <br>
+    This is login page <br>
    <center>
     <form action="loginProcess.jsp" method="post">
     UserName:<input type="text" name="username"><br>
     PassWord:<input type="text" name="pw"><br>
+   <br>
     <input type="submit" value="login">
     <input type="reset" value="reset">
+    </form>
+    
+    <form action="register.jsp">
+    <input type="button" value="register"></input>
     </form>
     
     
@@ -37,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <font color=red>
     <%
     	String erro=request.getParameter("erro");
-
+		
     	if(erro!=null){
     	
     	out.println(erro);

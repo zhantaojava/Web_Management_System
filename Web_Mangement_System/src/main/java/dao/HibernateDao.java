@@ -15,6 +15,9 @@ public class HibernateDao {
 	private static SessionFactory sessionFactory;
 	private static ServiceRegistry serviceRegistry;
 
+	private int pageCount;
+	private int pageSize = 3;
+
 	/**
 	 * 
 	 * @param username
@@ -47,4 +50,82 @@ public class HibernateDao {
 
 	}
 
+	/**
+	 * @author suzhantao
+	 * @param user
+	 *            : user instance 哈哈
+	 * @return obj: save的返回值为一个obj，用来判断是否save成功
+	 */
+	public Object save(User user) {
+		Configuration configuration = new Configuration();
+		configuration.configure();
+		serviceRegistry = new ServiceRegistryBuilder().applySettings(
+				configuration.getProperties()).buildServiceRegistry();
+		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+
+		Object obj = session.save(user);
+
+		session.getTransaction().commit();
+
+		return obj;
+
+	}
+
+	public int SearchPageCount() {
+		Configuration configuration = new Configuration();
+		configuration.configure();
+		serviceRegistry = new ServiceRegistryBuilder().applySettings(
+				configuration.getProperties()).buildServiceRegistry();
+		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+		Session session = sessionFactory.getCurrentSession();
+
+		session.beginTransaction();
+
+		List list = session.createQuery("from User").list();
+
+		session.getTransaction().commit();
+
+		int rowCount = list.size();
+
+		if (rowCount % pageSize == 0) {
+			pageCount = rowCount / pageSize;
+		} else {
+			pageCount = rowCount / pageSize + 1;
+		}
+
+		return pageCount;
+
+	}
+
+	/**
+	 * Paging
+	 * 
+	 * @param pageNow
+	 * @param pageSize
+	 * @return
+	 */
+	public List searchPage(int pageNow, int pageSize) {
+		Configuration configuration = new Configuration();
+		configuration.configure();
+
+		serviceRegistry = new ServiceRegistryBuilder().applySettings(
+				configuration.getProperties()).buildServiceRegistry();
+		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+		Session session = sessionFactory.getCurrentSession();
+
+		session.beginTransaction();
+
+		List list = session.createQuery("from User")
+				.setFirstResult(pageSize * (pageNow - 1))
+				.setMaxResults(pageSize).list();
+
+		session.getTransaction().commit();
+
+		return list;
+	}
 }

@@ -4,24 +4,27 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.User;
+import model.UserBeanProcess;
 import dao.HibernateDao;
 
 public class Test {
 
 	public static void main(String[] args) {
+
 		
-		List list=new LinkedList();
-		
-		
-		
+		UserBeanProcess ubp=new UserBeanProcess();
 		
 		HibernateDao hibernateDao=new HibernateDao();
-		list=hibernateDao.searchUser("mingxing");
 		
-		System.out.println(list.size());
+		List<User> list = new LinkedList<User>();
+
+		list = hibernateDao.searchUser("df");
 		
-		User u=(User) list.get(0);
-		System.out.println(u.getPw());
+		User user=new User();
+		
+		if(!list.isEmpty()){
+		user=list.get(0);
+		}
 		
 		
 	}
