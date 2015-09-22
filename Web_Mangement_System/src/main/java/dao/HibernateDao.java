@@ -34,18 +34,14 @@ public class HibernateDao {
 
 		session.beginTransaction();
 
-		
 		String hql = " from User where name like :name";
-        Query query = session.createQuery(hql);
-        query.setString("name", username);
-        List<User> list = query.list();
-		
-		
-		//List<User> list = session.createQuery("from User").list();
+		Query query = session.createQuery(hql);
+		query.setString("name", username);
+		List<User> list = query.list();
+
+		// List<User> list = session.createQuery("from User").list();
 
 		session.getTransaction().commit();
-
-		
 
 		return list;
 

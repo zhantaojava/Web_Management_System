@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*,java.sql.*"
+<%@ page language="java"
+	import="java.util.*,java.sql.*,dao.HibernateDao,model.User"
 	pageEncoding="US-ASCII"%>
 <%
 	String path = request.getContextPath();
@@ -68,18 +69,47 @@
 		} */
 
 		//Validation (not hit DB) 
-		
-		if(u.equals("zhantao")&&p.equals("123")){
-			
+
+		/* if (u.equals("zhantao") && p.equals("123")) {
+
 			//valid ,then forward to wel.jsp
-			response.sendRedirect("wel.jsp?username="+u);
-		
+			response.sendRedirect("wel.jsp?username=" + u);
+
+		} else {
+			//invalid
+			String erro = "invalid user";
+			response.sendRedirect("login.jsp?erro=" + erro);
+		} */
+	%>
+
+
+	<%
+		HibernateDao hibernateDao = new HibernateDao();
+		User user = new User();
+
+		List list = new LinkedList();
+
+		list = hibernateDao.searchUser(u);
+
+		user = (User)list.get(0);
+
+		//validate user excising
+		if (list != null) {
+			if (user.getPw().equals(p)) {
+				//valid ,then forward to wel.jsp
+				response.sendRedirect("wel.jsp?username=" + u);
+			} else {
+				String erro="invalid password";
+				response.sendRedirect("login.jsp?erro=" + erro);
+			}
+			
 		}
 		else{
-			//invalid
-			String erro="invalid user";
+			String erro="invalid username";
 			response.sendRedirect("login.jsp?erro="+erro);
-		} 
+		
+		}
 	%>
+
 </body>
 </html>
