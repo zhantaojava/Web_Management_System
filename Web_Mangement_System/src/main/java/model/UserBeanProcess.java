@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import dao.HibernateDao;
+import model_dao.HibernateDao;
 
 
 public class UserBeanProcess {

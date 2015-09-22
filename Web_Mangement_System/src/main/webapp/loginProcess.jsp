@@ -34,52 +34,7 @@
 		String u = request.getParameter("username");
 		String p = request.getParameter("pw");
 
-		/* //valida from DB
-
-		//1.loading drvier
-		Class.forName("com.mysql.jdbc.Driver");
-
-		//2.get URL
-		Connection ct = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/mkyong", "root", "tiger");
-
-		//3.create Statement
-		Statement sm = ct.createStatement();
-
-		//4.query
-		ResultSet rs = sm
-				.executeQuery("select pw from UserValidator where name='"
-						+ u + "'");
-
-		if (rs.next()) { //get the username 
-
-			if (rs.getString(1).equals(p)) { //compare the password with the user input password
-				//password valid
-				response.sendRedirect("wel.jsp?user=" + u);
-
-			} else {
-				//password invalid
-				String pwerro = "password invalid";
-				response.sendRedirect("login.jsp?erro=" + pwerro);
-			}
-		} else {
-			//username invalid    
-			String unameerro = "password invalid";
-			response.sendRedirect("login.jsp?erro=" + unameerro);
-		} */
-
-		//Validation (not hit DB) 
-
-/* 		 if (u.equals("zhantao") && p.equals("123")) {
-
-			//valid ,then forward to wel.jsp
-			response.sendRedirect("wel.jsp?username=" + u);
-
-		} else {
-			//invalid
-			String erro = "invalid user";
-			response.sendRedirect("login.jsp?erro=" + erro);
-		}  */
+		
 		
 		UserBeanProcess ubp=new UserBeanProcess();
 		

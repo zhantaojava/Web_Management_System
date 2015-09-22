@@ -5,7 +5,7 @@ import java.util.List;
 
 import model.User;
 import model.UserBeanProcess;
-import dao.HibernateDao;
+import model_dao.HibernateDao;
 
 public class Test {
 

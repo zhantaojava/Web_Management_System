@@ -1,5 +1,5 @@
 <%@ page language="java"
-	import="java.util.*,dao.HibernateDao,model.User"
+	import="java.util.*,model_dao.HibernateDao,model.User"
 	pageEncoding="US-ASCII"%>
 <%
 	String path = request.getContextPath();
