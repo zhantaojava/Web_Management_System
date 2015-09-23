@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
+@Controller
 public class LoginProcessController {
 	
-	private UserBeanProcess ubs;
+	private UserBeanProcess ubs=new UserBeanProcess();
 	
 	
 	@RequestMapping(value="login")
 	public ModelAndView showName(
 			
-		@RequestParam(value = "name") String u,
-		@RequestParam(value = "password") String p){
+		@RequestParam(value = "username") String u,
+		@RequestParam(value = "pw") String p){
 		
 		
 		if(ubs.CheckUser(u, p)){
